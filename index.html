@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loader" id="loader">
+    <p>I made this for you... <br><br>- ayban</p>
+  </div>
+
+  <canvas id="fxCanvas" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <div class="brand">For You</div>
+    <button class="song-button" id="songButton" type="button">&#9834; Play a Song</button>
+  </header>
+
+  <aside class="audio-panel" id="audioPanel" aria-label="Audio player">
+    <div class="audio-orb"></div>
+    <p class="panel-label">Birthday song</p>
+    <h2 id="trackTitle">wave to earth - seasons</h2>
+    <p class="muted">Now playing</p>
+    <audio id="birthdayAudio" preload="metadata">
+      <source id="audioSource" src="wave to earth - seasons.mp3" type="audio/mpeg">
+      Your browser supports MP3 audio through the audio element.
+    </audio>
+    <div class="audio-actions">
+      <button id="audioPlay" type="button">Play</button>
+      <button id="audioPause" type="button">Pause</button>
+    </div>
+    <label for="audioProgress">Progress</label>
+    <input id="audioProgress" type="range" min="0" max="100" value="0">
+    <label for="audioVolume">Volume</label>
+    <input id="audioVolume" type="range" min="0" max="1" step="0.01" value="0.75">
+  </aside>
+
+  <main class="experience" id="experience">
+    <section class="scene scene-cake active" data-scene="cake">
+      <div class="warm-light"></div>
+      <div class="scene-inner cake-layout">
+        <div class="copy-block">
+          <p class="eyebrow">A candle waits in the dark</p>
+          <h1 id="birthdayMessage">Happy Birthday Ysa!</h1>
+          <p class="scene-note">Click the candle flame.</p>
+        </div>
+        <div class="cake-stage">
+          <canvas id="cakeCanvas" aria-label="Canvas birthday cake"></canvas>
+          <button class="candle-target" id="candleTarget" type="button" aria-label="Extinguish candle"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene-envelope" data-scene="letter">
+      <div class="scene-inner centered">
+        <div class="copy-block compact">
+          <p class="eyebrow">A sealed letter</p>
+          <h2>Open it slowly</h2>
+        </div>
+        <div class="letter-stage" id="letterStage">
+          <span class="paper-peek" id="paperPeek"></span>
+          <button class="envelope" id="envelope" type="button" aria-label="Open birthday letter">
+            <span class="env-back"></span>
+            <span class="env-front"></span>
+            <span class="env-flap"></span>
+            <span class="heart-seal"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene-wishes" data-scene="wishes">
+      <canvas id="starsCanvas" aria-label="Clickable canvas stars"></canvas>
+      <div class="scene-inner wishes-layout">
+        <div class="copy-block compact">
+          <p class="eyebrow">Touch a star</p>
+          <h2>Birthday wishes in the dark</h2>
+        </div>
+        <div class="wish-card" id="wishCard">Choose one glowing star.</div>
+      </div>
+    </section>
+
+    <section class="scene scene-celebrate" data-scene="celebrate">
+      <div class="scene-inner centered">
+        <div class="copy-block compact">
+          <p class="eyebrow">One wish more</p>
+          <h2>Let the room bloom with light</h2>
+          <p class="scene-note">Click Make a Birthday Wish, then close your eyes.</p>
+        </div>
+        <button class="primary-button" id="celebrateButton" type="button">Make a Wish</button>
+      </div>
+    </section>
+
+    <section class="scene scene-gift" data-scene="gift">
+      <button class="focus-backdrop" id="giftBackdrop" type="button" aria-label="Close surprise"></button>
+      <div class="scene-inner centered">
+        <div class="copy-block compact">
+          <p class="eyebrow">The final gift</p>
+          <h2>Untie the ribbon</h2>
+        </div>
+        <button class="gift" id="giftBox" type="button" aria-label="Open gift box">
+          <span class="gift-light"></span>
+          <span class="gift-lid"><span class="ribbon ribbon-lid"></span></span>
+          <span class="gift-body"><span class="ribbon ribbon-body"></span></span>
+          <span class="bow bow-left"></span>
+          <span class="bow bow-right"></span>
+          <span class="bow-knot"></span>
+        </button>
+        <div class="surprise gift-surprise" id="surprise" aria-label="Birthday surprise">
+          <button class="close-card close-icon" id="closeGift" type="button" aria-label="Close surprise"></button>
+          <div class="gift-sparkles" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="teddy-bear" aria-hidden="true">
+            <span class="bear-ear bear-ear-left"></span>
+            <span class="bear-ear bear-ear-right"></span>
+            <span class="bear-head">
+              <span class="bear-eye bear-eye-left"></span>
+              <span class="bear-eye bear-eye-right"></span>
+              <span class="bear-muzzle">
+                <span class="bear-nose"></span>
+              </span>
+            </span>
+            <span class="bear-body"></span>
+            <span class="bear-arm bear-arm-left"></span>
+            <span class="bear-arm bear-arm-right"></span>
+            <span class="bear-foot bear-foot-left"></span>
+            <span class="bear-foot bear-foot-right"></span>
+          </div>
+          <div class="flower-bouquet" aria-hidden="true">
+            <span class="stem stem-one"></span>
+            <span class="stem stem-two"></span>
+            <span class="stem stem-three"></span>
+            <span class="stem stem-four"></span>
+            <span class="flower flower-one"></span>
+            <span class="flower flower-two"></span>
+            <span class="flower flower-three"></span>
+            <span class="flower flower-four"></span>
+            <span class="wrap"></span>
+            <span class="bouquet-ribbon"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene-ending" data-scene="ending">
+      <canvas id="endingCanvas" aria-hidden="true"></canvas>
+      <div class="ending-copy" id="endingCopy">
+        <h2>Happy Birthday</h2>
+        <p>I hope today becomes one of your happiest memories.</p>
+        <p>See you soon.</p>
+      </div>
+      <div class="blackout" id="blackout"></div>
+    </section>
+  </main>
+
+  <button class="focus-backdrop letter-backdrop" id="letterBackdrop" type="button" aria-label="Close letter"></button>
+  <div class="letter-overlay" id="letterOverlay" aria-hidden="true">
+    <article class="letter-paper" id="letterPaper" aria-label="Birthday letter">
+      <span id="letterText"></span>
+    </article>
+    <button class="close-card letter-close" id="closeLetter" type="button" aria-label="Close letter">Close</button>
+  </div>
+
+  <nav class="scene-controls" aria-label="Scene navigation">
+    <button id="prevScene" type="button" aria-label="Previous scene">Previous</button>
+    <div class="scene-count" id="sceneCount">1 / 6</div>
+    <button id="nextScene" type="button" aria-label="Next scene">Next</button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
